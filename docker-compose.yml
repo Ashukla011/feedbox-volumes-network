@@ -1,8 +1,11 @@
+
 services:
   db:
     image: postgres:15
     env_file:
       - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
 
   api:
     build: .
@@ -19,3 +22,6 @@ services:
       - "3000:80"
     depends_on:
       - api
+
+volumes:
+  postgres_data:
